@@ -22,8 +22,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED 
 		if velocity.y == 0 and velocity.x > 0:
 			anim.play("walking")
-		if velocity.y > 0 and velocity.x > 0:
-			anim.play("jump right")
+		#if velocity.y > 0 and velocity.x > 0:
+			#anim.play("jump right")
 		if velocity.y == 0 and velocity.x < 0:
 			anim.play("walking left")
 	else:

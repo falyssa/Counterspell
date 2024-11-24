@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d1xddayw4v0eq"]
 
-[ext_resource type="Texture2D" uid="uid://dtvgpsyat0aq3" path="res://Counterspell/throne room.webp" id="1_g668t"]
+[ext_resource type="Texture2D" uid="uid://dtvgpsyat0aq3" path="res://Counterspell/throne room.webp" id="1_wmao8"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -10,11 +10,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+<<<<<<< HEAD
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1345.0
+offset_bottom = 769.0
+=======
 offset_left = -584.0
 offset_top = -303.0
 offset_right = 760.0
 offset_bottom = 465.0
+>>>>>>> refs/remotes/origin/main
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_g668t")
+texture = ExtResource("1_wmao8")
 stretch_mode = 6

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dakhvodk8efha"]
+[gd_scene load_steps=8 format=3 uid="uid://dakhvodk8efha"]
 
 [ext_resource type="Texture2D" uid="uid://dtvgpsyat0aq3" path="res://Counterspell/throne room.webp" id="1_hbkdy"]
 [ext_resource type="Script" path="res://Counterspell/player.gd" id="2_g7xhp"]
@@ -8,6 +8,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_royjn"]
 size = Vector2(3493, 287)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2oti0"]
+size = Vector2(199, 1858.63)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1ndp"]
+size = Vector2(314, 1874)
 
 [node name="pridelevel" type="Node2D"]
 position = Vector2(23, 60)
@@ -28,21 +34,23 @@ shape = SubResource("RectangleShape2D_kwbcp")
 position = Vector2(-24, -70)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1159.5, 974)
+position = Vector2(1154, 974)
 shape = SubResource("RectangleShape2D_royjn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-521, 681)
+shape = SubResource("RectangleShape2D_2oti0")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2644, 748)
+shape = SubResource("RectangleShape2D_s1ndp")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
 offset_left = -27.0
-offset_top = -47.0
+offset_top = -46.0
 offset_right = 2547.0
-offset_bottom = 1278.0
-grow_horizontal = 2
-grow_vertical = 0
+offset_bottom = 1279.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("1_hbkdy")

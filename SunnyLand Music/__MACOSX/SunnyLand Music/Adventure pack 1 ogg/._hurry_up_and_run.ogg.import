@@ -1,0 +1,18 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ciqpn0870axf0"
+valid=false
+
+[deps]
+
+source_file="res://Counterspell/SunnyLand Music/__MACOSX/SunnyLand Music/Adventure pack 1 ogg/._hurry_up_and_run.ogg"
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -486,7 +486,7 @@ script = ExtResource("7_mq5fu")
 shape = SubResource("RectangleShape2D_7uq3s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="boss"]
-position = Vector2(1514, 237)
+position = Vector2(1406.31, 167.445)
 scale = Vector2(3.90885, 5.98438)
 sprite_frames = SubResource("SpriteFrames_i306s")
 animation = &"attack"
@@ -495,13 +495,13 @@ frame_progress = 0.147696
 [node name="Hurtbox" type="Area2D" parent="boss"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="boss/Hurtbox"]
-position = Vector2(1524, 251.5)
+position = Vector2(1416.31, 181.945)
 shape = SubResource("RectangleShape2D_j6vla")
 
 [node name="swordhitbox" type="Area2D" parent="boss"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="boss/swordhitbox"]
-position = Vector2(1540.75, 249.75)
+position = Vector2(1433.06, 180.195)
 shape = SubResource("RectangleShape2D_iswxq")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

@@ -1,100 +1,115 @@
 extends CharacterBody2D
 
-# Movement settings
-const GRAVITY = 980
-const SPEED = 600
+# Attack settings
 const ATTACK_DURATION = 1.0  # Duration of attack animation in seconds
+const ATTACK_SPEED = 500     # Speed during attack movement
+const DAMAGE_AMOUNT = 20     # Damage dealt to player per hit
+const DAMAGE_COOLDOWN = 1.0  # Cooldown between damage hits in seconds
+
+# Position settings
+const LEFT_BOUNDARY = Vector2(-1200.424, 834.4903)
+const RIGHT_BOUNDARY = Vector2(1000.925, 834.4252)
+const POSITION_THRESHOLD = 10.0  # Distance threshold for reaching target
 
 # Direction control
 var current_direction = -1  # Start moving left
-var gravity_enabled = true
-
-# Screen boundaries
-var screen_size
-var sprite_half_width = 48  # Adjust based on your sprite size
-
-# State management
-enum State { WALKING, ATTACKING }
-var current_state = State.WALKING
+var target_position = LEFT_BOUNDARY  # Initial target
 
 # Health settings
 var max_health = 100
 var current_health = max_health
 
+# Damage control
+var can_deal_damage = true  # Flag to control damage cooldown
+
 # Node references
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var attack_timer: Timer = $AttackTimer
+@onready var hitbox: Area2D = $Hitbox
+@onready var hurtbox: Area2D = $Hurtbox
 
 func _ready():
-	# Get the viewport size for screen boundaries
-	screen_size = get_viewport_rect().size
-	
-	# Get the hurtbox node and connect hit detection
-	var hurtbox = $Hurtbox
+	# Setup hitbox
+	if !hitbox:
+		hitbox = Area2D.new()
+		var collision_shape = CollisionShape2D.new()
+		var shape = RectangleShape2D.new()
+		shape.size = Vector2(100, 150)  # Adjust size as needed
+		collision_shape.shape = shape
+		hitbox.add_child(collision_shape)
+		add_child(hitbox)
+		hitbox.name = "Hitbox"
+		
+		# Connect hitbox signal for dealing damage
+		hitbox.area_entered.connect(_on_hitbox_area_entered)
+		
+	# Setup hurtbox
+	if !hurtbox:
+		hurtbox = Area2D.new()
+		var hurt_collision = CollisionShape2D.new()
+		var hurt_shape = RectangleShape2D.new()
+		hurt_shape.size = Vector2(100, 150)  # Adjust size as needed
+		hurt_collision.shape = hurt_shape
+		hurtbox.add_child(hurt_collision)
+		add_child(hurtbox)
+		hurtbox.name = "Hurtbox"
+		
+	# Connect hurtbox signal
 	hurtbox.area_entered.connect(_on_hurtbox_area_entered)
 	
-	# Setup attack timer
-	attack_timer = Timer.new()
-	attack_timer.wait_time = ATTACK_DURATION
-	attack_timer.one_shot = true
-	attack_timer.timeout.connect(_on_attack_finished)
-	add_child(attack_timer)
+	# Set initial position
+	global_position = RIGHT_BOUNDARY
+	target_position = LEFT_BOUNDARY
 	
-	# Start walking
-	_update_animation()
+	# Start attacking animation immediately
+	sprite.play("attack")
 
 func _physics_process(delta):
-	# Apply gravity
-	if gravity_enabled and not is_on_floor():
-		velocity.y += GRAVITY * delta
+	# Always move and attack
+	handle_constant_attack(delta)
 	
-	match current_state:
-		State.WALKING:
-			_handle_walking()
-		State.ATTACKING:
-			_handle_attacking()
+	# Check if reached target position to switch direction
+	if has_reached_target():
+		switch_direction()
+
+func has_reached_target() -> bool:
+	return global_position.distance_to(target_position) < POSITION_THRESHOLD
+
+func handle_constant_attack(delta):
+	# Calculate direction to target
+	var direction_to_target = (target_position - global_position).normalized()
 	
-	# Move based on current velocity
-	move_and_slide()
+	# Update position while attacking
+	global_position += direction_to_target * ATTACK_SPEED * delta
 	
-	# Check for wall collisions or screen boundaries
-	if is_on_wall() or _is_at_screen_edge():
-		_handle_wall_collision()
+	# Update sprite direction
+	sprite.flip_h = direction_to_target.x > 0
+	current_direction = 1 if direction_to_target.x > 0 else -1
 
-func _is_at_screen_edge() -> bool:
-	var next_position = global_position + Vector2(velocity.x * get_physics_process_delta_time(), 0)
-	return (next_position.x - sprite_half_width <= 0 and current_direction < 0) or \
-		   (next_position.x + sprite_half_width >= screen_size.x and current_direction > 0)
-
-func _handle_walking():
-	velocity.x = current_direction * SPEED
-	sprite.flip_h = current_direction > 0
+func switch_direction():
+	# Switch target position while maintaining attack
+	target_position = RIGHT_BOUNDARY if target_position == LEFT_BOUNDARY else LEFT_BOUNDARY
 	
-	# Clamp position to screen boundaries
-	global_position.x = clamp(global_position.x, sprite_half_width, screen_size.x - sprite_half_width)
+	# Ensure attack animation keeps playing
+	if !sprite.is_playing():
+		sprite.play("attack")
+
+func _on_hitbox_area_entered(area):
+	# Check if the area belongs to the player and we can deal damage
+	if area.name == "playerhurtbox" and can_deal_damage:
+		deal_damage_to_player(area)
+
+func deal_damage_to_player(player_area):
+	# Get the player node (assuming the hurtbox is a child of the player)
+	var player = player_area.get_parent()
 	
-func _handle_attacking():
-	velocity.x = 0  # Stop moving while attacking
-
-func _handle_wall_collision():
-	if current_state == State.WALKING:
-		# Change direction and start attack
-		current_direction *= -1
-		_start_attack()
-
-func _start_attack():
-	current_state = State.ATTACKING
-	sprite.play("attack")  # Play attack animation
-	attack_timer.start()
-
-func _on_attack_finished():
-	current_state = State.WALKING
-	_update_animation()
-
-func _update_animation():
-	if current_state == State.WALKING:
-		sprite.play("walk")
-	# Attack animation is handled in _start_attack()
+	# Check if the player has a take_damage method
+	if player.has_method("take_damage"):
+		player.take_damage(DAMAGE_AMOUNT)
+		
+		# Start damage cooldown
+		can_deal_damage = false
+		await get_tree().create_timer(DAMAGE_COOLDOWN).timeout
+		can_deal_damage = true
 
 func _on_hurtbox_area_entered(area):
 	if area.name == "swordhitbox":
@@ -116,7 +131,3 @@ func take_damage(amount):
 func die():
 	print("Boss defeated!")
 	queue_free()  # Removes the boss from the scene
-
-# Called when viewport size changes
-func _on_viewport_size_changed():
-	screen_size = get_viewport_rect().size

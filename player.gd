@@ -16,6 +16,11 @@ const JUMP_BUFFER = 0.1
 const DOUBLE_JUMP_VELOCITY = -1200.0
 const TURN_MULTIPLIER = 1.5
 
+# Position recording variables
+var position_record: Array = []
+var record_timer: float = 0.0
+const RECORD_INTERVAL: float = 1.0
+
 # Dash constants
 const DASH_SPEED_GROUND = 2000.0
 const DASH_DURATION_GROUND = 0.05
@@ -59,18 +64,19 @@ var dash_animation_timer: float = 0.0
 var is_attacking: bool = false
 var attack_timer: float = 0.0
 
-# Health variable
-var health: int = 100
-
-# Damage invincibility variables
+# Health and damage variables
+var max_health: int = 100
+var health: int = max_health
 var is_invincible: bool = false
-var invincibility_duration: float = 1.0  # Duration of invincibility after taking damage
+var invincibility_duration: float = 2.0  # Increased duration for testing
 var invincibility_timer: float = 0.0
+var damage_flash_duration: float = 0.1
+var damage_flash_timer: float = 0.0
 
 # Animation variables
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sword_hitbox: CollisionShape2D = $swordhitbox/CollisionShape2D
-@onready var hurtbox: Area2D = $Hurtbox  # Added hurtbox
+@onready var hurtbox: Area2D = $Hurtbox
 var current_animation_state: AnimationState = AnimationState.IDLE
 
 # Get the gravity from the project settings
@@ -86,12 +92,29 @@ func _ready() -> void:
 	else:
 		push_error("Sword hitbox not found! Make sure the path to CollisionShape2D is correct")
 	
+	# Setup hurtbox connections - ensure we only connect once
 	if hurtbox:
-		hurtbox.body_entered.connect(_on_Hurtbox_body_entered)
+		# Disconnect any existing connections to prevent duplicates
+		if hurtbox.area_entered.is_connected(_on_hurtbox_area_entered):
+			hurtbox.area_entered.disconnect(_on_hurtbox_area_entered)
+		if hurtbox.body_entered.is_connected(_on_Hurtbox_body_entered):
+			hurtbox.body_entered.disconnect(_on_Hurtbox_body_entered)
+		
+		# Connect our area detection
+		hurtbox.area_entered.connect(_on_hurtbox_area_entered)
 	else:
 		push_error("Hurtbox not found! Make sure it's a child node named 'Hurtbox'")
 	
 	update_animation(AnimationState.IDLE)
+
+func record_position() -> void:
+	# Create a dictionary with position and timestamp
+	var position_data = {
+		"position": position,
+		"timestamp": Time.get_unix_time_from_system()
+	}
+	position_record.append(position_data)
+	print("Position recorded: ", position_data)  # Debug print
 
 func update_animation(new_state: AnimationState) -> void:
 	if not sprite or current_animation_state == new_state:
@@ -119,7 +142,6 @@ func update_animation(new_state: AnimationState) -> void:
 		hitbox_position.x = abs(hitbox_position.x) * facing_direction
 		sword_hitbox.position = hitbox_position
 
-# New function to handle immediate sprite flipping
 func update_facing_direction() -> void:
 	if Input.is_action_pressed("ui_right"):
 		facing_direction = 1.0
@@ -164,31 +186,80 @@ func initiate_attack() -> void:
 func take_damage(amount: int) -> void:
 	if is_invincible:
 		return
+		
 	health -= amount
-	show_damage_effect()
+	print("Player took damage! Health: ", health)
+	
+	# Activate invincibility
 	is_invincible = true
 	invincibility_timer = invincibility_duration
-	print("Character took damage! Health is now: ", health)
+	damage_flash_timer = damage_flash_duration
+	
+	# Visual feedback
+	show_damage_effect()
+	
+	# Add knockback
+	var knockback_direction = -facing_direction
+	velocity.x = knockback_direction * 500  # Horizontal knockback
+	velocity.y = -400  # Vertical knockback
+	
 	if health <= 0:
 		die()
 
 func show_damage_effect() -> void:
-	var tween = get_tree().create_tween()
-	tween.tween_property(sprite, "modulate", Color(1, 0, 0), 0.1).from(Color(1, 1, 1))
-	tween.tween_property(sprite, "modulate", Color(1, 1, 1), 0.1).delay(0.1)
+	sprite.modulate = Color(1, 0, 0)  # Set to red
+	damage_flash_timer = damage_flash_duration
 
-func die() -> void:
-	print("Character has died.")
-	# Handle death (e.g., reload scene, show game over screen)
-	# get_tree().reload_current_scene()
+func handle_damage_effects(delta: float) -> void:
+	# Handle invincibility
+	if is_invincible:
+		invincibility_timer -= delta
+		if invincibility_timer <= 0:
+			is_invincible = false
+			sprite.modulate = Color(1, 1, 1)  # Reset to normal
+			sprite.self_modulate.a = 1.0  # Ensure full opacity
+		else:
+			# Blinking effect during invincibility
+			sprite.self_modulate.a = 0.5 if fmod(invincibility_timer, 0.2) < 0.1 else 1.0
+	
+	# Handle damage flash
+	if damage_flash_timer > 0:
+		damage_flash_timer -= delta
+		if damage_flash_timer <= 0:
+			if not is_invincible:  # Only reset color if not invincible
+				sprite.modulate = Color(1, 1, 1)
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	if area.name == "Hitbox" and not is_invincible:  # This matches the boss's hitbox name
+		take_damage(20)  # Take same damage as defined in boss script
 
 func _on_Hurtbox_body_entered(body: Node) -> void:
-	# Check if the body is an enemy's sword attack
-	if body.is_in_group("enemy_attacks"):
-		print("Character was hit by an enemy sword!")
-		take_damage(10)  # Adjust damage amount as needed
+	# This function is kept for backward compatibility
+	# but we're using area_entered instead
+	pass
+
+func die() -> void:
+	print("Player has died!")
+	# Disable player input
+	set_physics_process(false)
+	# Play death animation if available
+	if sprite.has_animation("death"):
+		sprite.play("death")
+	# Wait a moment before restarting
+	await get_tree().create_timer(1.0).timeout
+	# Reload the current scene
+	get_tree().reload_current_scene()
 
 func _physics_process(delta: float) -> void:
+	# Handle damage effects (invincibility and flashing)
+	handle_damage_effects(delta)
+	
+	# Update position recording timer
+	record_timer += delta
+	if record_timer >= RECORD_INTERVAL:
+		record_position()
+		record_timer = 0.0
+	
 	# Update facing direction immediately based on input
 	update_facing_direction()
 	
@@ -270,12 +341,6 @@ func _physics_process(delta: float) -> void:
 
 	was_on_floor = is_on_floor()
 	
-	# Update invincibility timer
-	if is_invincible:
-		invincibility_timer -= delta
-		if invincibility_timer <= 0:
-			is_invincible = false
-
 	update_animation(determine_animation_state())
 
 	move_and_slide()

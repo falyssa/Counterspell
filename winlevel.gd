@@ -20,4 +20,4 @@ func _on_quit_pressed() -> void:
 
 
 func _on_play_2_pressed() -> void:
-	pass # Replace with function body.
+		get_tree().change_scene_to_file("res://Counterspell/scenes/game.tscn")

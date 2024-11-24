@@ -1,106 +1,23 @@
-[gd_scene load_steps=12 format=3 uid="uid://dakhvodk8efha"]
+[gd_scene load_steps=3 format=3 uid="uid://dakhvodk8efha"]
 
 [ext_resource type="Texture2D" uid="uid://dtvgpsyat0aq3" path="res://Counterspell/throne room.webp" id="1_hbkdy"]
-[ext_resource type="Script" path="res://Counterspell/player.gd" id="2_g7xhp"]
-[ext_resource type="Texture2D" uid="uid://bhrmbdrrblxyl" path="res://Counterspell/MainCharacter(FullPack)/MainCharacter(FullPack)/MainCharacter(FullPack-v2)/MainChar - idle.png" id="2_j34ep"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwbcp"]
 
-[sub_resource type="Animation" id="Animation_pdk3s"]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MainChar-Idle:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
-
-[sub_resource type="Animation" id="Animation_5xx4e"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MainChar-Idle:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_f4lit"]
-_data = {
-"RESET": SubResource("Animation_5xx4e"),
-"idle": SubResource("Animation_pdk3s")
-}
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_lroo3"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_royjn"]
-size = Vector2(3493, 287)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2oti0"]
-size = Vector2(199, 1858.63)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3pah"]
-size = Vector2(290, 1860)
-
 [node name="pridelevel" type="Node2D"]
-position = Vector2(23, 60)
+
+[node name="background" type="Node" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="background"]
+offset_top = -2.0
+offset_right = 2559.0
+offset_bottom = 1345.0
+texture = ExtResource("1_hbkdy")
+stretch_mode = 6
 
 [node name="player" type="CharacterBody2D" parent="."]
-position = Vector2(-16, -124)
-script = ExtResource("2_g7xhp")
+
+[node name="Sprite2D" type="Sprite2D" parent="player"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
-position = Vector2(206, 88)
 shape = SubResource("RectangleShape2D_kwbcp")
-
-[node name="MainChar-Idle" type="Sprite2D" parent="player"]
-position = Vector2(902, 1266)
-scale = Vector2(1.18034, 2.96875)
-texture = ExtResource("2_j34ep")
-hframes = 8
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="player"]
-libraries = {
-"": SubResource("AnimationLibrary_f4lit")
-}
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player"]
-sprite_frames = SubResource("SpriteFrames_lroo3")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-24, -70)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1154, 974)
-shape = SubResource("RectangleShape2D_royjn")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-521, 681)
-shape = SubResource("RectangleShape2D_2oti0")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-z_index = -1
-position = Vector2(2192, 823)
-shape = SubResource("RectangleShape2D_q3pah")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-z_index = -1
-offset_left = -27.0
-offset_top = -46.0
-offset_right = 2547.0
-offset_bottom = 1279.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("1_hbkdy")

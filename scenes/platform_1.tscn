@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr8b40e68a10h"]
+
+[ext_resource type="Texture2D" uid="uid://cnws4b3d8qnti" path="res://Counterspell/assets/Fantasy Swamp Forest 2/Free/Terrain-and-Props-OLD.png" id="1_cp4lu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3w1y"]
+size = Vector2(170, 16)
+
+[node name="platform 1" type="Node2D"]
+
+[node name="Terrain-and-props-old" type="Sprite2D" parent="."]
+position = Vector2(195, 6)
+scale = Vector2(2.30625, 1.58456)
+texture = ExtResource("1_cp4lu")
+region_enabled = true
+region_rect = Rect2(65.6829, 79.7408, 77.6731, 12.8124)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(194, 5)
+shape = SubResource("RectangleShape2D_f3w1y")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://vt5r46nohnmv"]
+
+[ext_resource type="Texture2D" uid="uid://m7vu32cfhmep" path="res://Counterspell/ending.jpg" id="1_0pjfh"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Ending" type="Sprite2D" parent="."]
+position = Vector2(572, 323)
+scale = Vector2(2.294, 1.4214)
+texture = ExtResource("1_0pjfh")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://bq3en30kcx62"]
+[gd_scene load_steps=37 format=3 uid="uid://bq3en30kcx62"]
 
 [ext_resource type="Texture2D" uid="uid://rggokjy4c78d" path="res://Counterspell/assets/Dynamic Space Background FREE/Nebula Blue.png" id="1_1dfo1"]
 [ext_resource type="PackedScene" uid="uid://cc0foshmtc8u0" path="res://Counterspell/scenes/player.tscn" id="1_5176b"]
+[ext_resource type="AudioStream" uid="uid://jhnjb44iewss" path="res://Counterspell/Music by Pascal Belisle/Music by Pascal Belisle/platformer_level03_loop.ogg" id="1_jqold"]
 [ext_resource type="Texture2D" uid="uid://dvb5pqaex28no" path="res://Counterspell/assets/BG_2.png" id="2_6qmqh"]
 [ext_resource type="Texture2D" uid="uid://dihhj7pc1hpyy" path="res://Counterspell/assets/Dynamic Space Background FREE/Stars Small_1.png" id="4_v7rrt"]
 [ext_resource type="Texture2D" uid="uid://cnws4b3d8qnti" path="res://Counterspell/assets/Fantasy Swamp Forest 2/Free/Terrain-and-Props-OLD.png" id="5_lsnq5"]
@@ -8736,6 +8737,11 @@ _data = {
 size = Vector2(323.897, 58.8658)
 
 [node name="Game" type="Node2D"]
+
+[node name="PlatformerLevel03Loop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_jqold")
+volume_db = 24.0
+autoplay = true
 
 [node name="NebulaBlue" type="Sprite2D" parent="."]
 position = Vector2(598, 18)

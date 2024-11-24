@@ -131,3 +131,4 @@ func take_damage(amount):
 func die():
 	print("Boss defeated!")
 	queue_free()  # Removes the boss from the scene
+	get_tree().change_scene_to_file("res://Counterspell/scenes/game.tscn")

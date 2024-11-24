@@ -1,6 +1,7 @@
-[gd_scene load_steps=72 format=3 uid="uid://dakhvodk8efha"]
+[gd_scene load_steps=73 format=3 uid="uid://3spb1qjynhdm"]
 
 [ext_resource type="Script" path="res://Counterspell/player.gd" id="1_bmokq"]
+[ext_resource type="AudioStream" uid="uid://jhnjb44iewss" path="res://Counterspell/Music by Pascal Belisle/Music by Pascal Belisle/platformer_level03_loop.ogg" id="1_yjucb"]
 [ext_resource type="Texture2D" uid="uid://cmg4fwq7h5wq6" path="res://Counterspell/MainCharacter(FullPack)/MainCharacter(FullPack)/MainChar - attack(first).png" id="2_04lpm"]
 [ext_resource type="Texture2D" uid="uid://61py78dm5g67" path="res://Counterspell/MainCharacter(FullPack)/MainCharacter(FullPack)/MainChar - dash(start).png" id="3_hqrls"]
 [ext_resource type="Texture2D" uid="uid://bqwwccqy8n25a" path="res://Counterspell/MainChar - idle.png" id="4_d3p02"]
@@ -423,6 +424,11 @@ size = Vector2(443.5, 232.5)
 
 [node name="pridelevel" type="Node2D"]
 position = Vector2(23, 60)
+
+[node name="PlatformerLevel03Loop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_yjucb")
+volume_db = 24.0
+autoplay = true
 
 [node name="player" type="CharacterBody2D" parent="."]
 position = Vector2(-16, -124)

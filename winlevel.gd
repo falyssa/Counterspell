@@ -10,14 +10,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
-func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://Counterspell/world.tscn")
-
-
-func _on_quit_pressed() -> void:
-	get_tree().quit()
+	
 
 
 func _on_play_2_pressed() -> void:
-		get_tree().change_scene_to_file("res://Counterspell/scenes/game.tscn")
+	get_tree().change_scene_to_file("res://Counterspell/prideplayer.tscn")
+
+
+func _on_quit_2_pressed() -> void:
+	get_tree().quit()

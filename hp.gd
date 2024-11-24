@@ -8,4 +8,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	text = "HP: " + str(get_node("../../Player/Player").health)
+	text = "LLives: " + str(get_node("../../Player/Player").health)

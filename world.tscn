@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bv68iagsqbwg2" path="res://Counterspell/Player/Player.tscn" id="1_20opp"]
 [ext_resource type="Script" path="res://Counterspell/bg.gd" id="1_37odh"]
+[ext_resource type="AudioStream" uid="uid://jhnjb44iewss" path="res://Counterspell/Music by Pascal Belisle/Music by Pascal Belisle/platformer_level03_loop.ogg" id="1_dgv7q"]
 [ext_resource type="Texture2D" uid="uid://8c8p305faqdu" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest of Illusion/Forest of Illusion Expansion Pack/Layers/tiles.png" id="1_re04k"]
 [ext_resource type="Texture2D" uid="uid://cxy7ocmy2e1xc" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest of Illusion/Forest of Illusion Expansion Pack/Layers/back.png" id="2_6lfhd"]
 [ext_resource type="Texture2D" uid="uid://dvwxm2fsspgs8" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest of Illusion/Forest of Illusion Expansion Pack/Layers/front.png" id="4_ovd3b"]
@@ -318,12 +319,15 @@ sources/1 = SubResource("TileSetAtlasSource_v6f8g")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lq72h"]
 size = Vector2(260.236, 143.424)
 
-[sub_resource type="GDScript" id="GDScript_2svwr"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01st1"]
 size = Vector2(15.3934, 67.4812)
 
 [node name="world" type="Node2D"]
+
+[node name="PlatformerLevel03Loop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_dgv7q")
+volume_db = 24.0
+autoplay = true
 
 [node name="TileMap2" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_6vp41")
@@ -420,24 +424,14 @@ shape = SubResource("RectangleShape2D_lq72h")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Hp" type="Label" parent="UI"]
-offset_left = 28.0
-offset_top = 9.0
-offset_right = 117.0
-offset_bottom = 62.0
+offset_left = 44.0
+offset_top = 32.0
+offset_right = 133.0
+offset_bottom = 85.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 30
 text = "Lives"
 script = ExtResource("7_hlb08")
-
-[node name="Gold" type="Label" parent="UI"]
-offset_left = 29.0
-offset_top = 66.0
-offset_right = 118.0
-offset_bottom = 119.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 30
-text = "Gold"
-script = SubResource("GDScript_2svwr")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 

@@ -1,11 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://2eth1heat0ee"]
+[gd_scene load_steps=4 format=3 uid="uid://2eth1heat0ee"]
 
 [ext_resource type="PackedScene" uid="uid://bv68iagsqbwg2" path="res://Counterspell/Player/Player.tscn" id="1_20opp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2l04s"]
+size = Vector2(985, 547)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_heqe0"]
+size = Vector2(81.9965, 653.207)
 
 [node name="world" type="Node2D"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_20opp")]
-position = Vector2(238, 322)
+position = Vector2(211, 286)
+scale = Vector2(1.60333, 1.60333)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(238, 322)
+position = Vector2(118, 152)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(451, 694.5)
+shape = SubResource("RectangleShape2D_2l04s")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-83, 169)
+shape = SubResource("RectangleShape2D_heqe0")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(981, 170)
+shape = SubResource("RectangleShape2D_heqe0")
+
+[node name="Panel2" type="Panel" parent="."]
+offset_left = 75.0
+offset_top = 573.0
+offset_right = 1063.0
+offset_bottom = 1121.0

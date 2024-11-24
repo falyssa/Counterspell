@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cn15nmano6ce"]
+[gd_scene load_steps=2 format=3 uid="uid://mwqg3lppa5th"]
 
 [ext_resource type="Script" path="res://Counterspell/main.gd" id="1_qyk01"]
 
@@ -6,15 +6,15 @@
 script = ExtResource("1_qyk01")
 
 [node name="Play" type="Button" parent="."]
-offset_right = 570.0
-offset_bottom = 248.0
+offset_right = 377.0
+offset_bottom = 149.0
 text = "Play"
 
 [node name="Quit" type="Button" parent="."]
-offset_left = 1.0
-offset_top = 346.0
-offset_right = 571.0
-offset_bottom = 594.0
+offset_left = -1.0
+offset_top = 191.0
+offset_right = 375.0
+offset_bottom = 340.0
 text = "Quit"
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]

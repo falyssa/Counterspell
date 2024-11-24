@@ -1,23 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://dakhvodk8efha"]
+[gd_scene load_steps=6 format=3 uid="uid://dakhvodk8efha"]
 
 [ext_resource type="Texture2D" uid="uid://dtvgpsyat0aq3" path="res://Counterspell/throne room.webp" id="1_hbkdy"]
+[ext_resource type="Script" path="res://Counterspell/player.gd" id="2_g7xhp"]
+[ext_resource type="Texture2D" uid="uid://v43sykhx3ek2" path="res://icon.svg" id="2_jxq0k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwbcp"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_royjn"]
+size = Vector2(3493, 287)
+
 [node name="pridelevel" type="Node2D"]
-
-[node name="background" type="Node" parent="."]
-
-[node name="TextureRect" type="TextureRect" parent="background"]
-offset_top = -2.0
-offset_right = 2559.0
-offset_bottom = 1345.0
-texture = ExtResource("1_hbkdy")
-stretch_mode = 6
+position = Vector2(23, 60)
 
 [node name="player" type="CharacterBody2D" parent="."]
+position = Vector2(-16, -124)
+script = ExtResource("2_g7xhp")
 
 [node name="Sprite2D" type="Sprite2D" parent="player"]
+position = Vector2(674, 545)
+texture = ExtResource("2_jxq0k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+position = Vector2(206, 88)
 shape = SubResource("RectangleShape2D_kwbcp")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-24, -70)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1159.5, 974)
+shape = SubResource("RectangleShape2D_royjn")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -47.0
+offset_right = 2547.0
+offset_bottom = 1278.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_hbkdy")

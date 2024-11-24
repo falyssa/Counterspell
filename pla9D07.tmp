@@ -490,7 +490,7 @@ position = Vector2(1514, 237)
 scale = Vector2(3.90885, 5.98438)
 sprite_frames = SubResource("SpriteFrames_i306s")
 animation = &"attack"
-frame_progress = 0.147696
+frame_progress = 0.489785
 
 [node name="Hurtbox" type="Area2D" parent="boss"]
 

@@ -1,21 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://mwqg3lppa5th"]
+[gd_scene load_steps=3 format=3 uid="uid://dtw6k5n80jcb0"]
 
-[ext_resource type="Script" path="res://Counterspell/main.gd" id="1_qyk01"]
+[ext_resource type="PackedScene" uid="uid://bfyfawhmk08iv" path="res://Counterspell/BG.tscn" id="2_lcbix"]
+
+[sub_resource type="GDScript" id="GDScript_anfqw"]
+script/source = "extends Node2D
+
+
+
+func _on_play_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://Counterspell/world.tscn\")
+
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()
+"
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_qyk01")
+script = SubResource("GDScript_anfqw")
 
 [node name="Play" type="Button" parent="."]
-offset_right = 377.0
-offset_bottom = 149.0
+offset_left = 389.0
+offset_top = 165.0
+offset_right = 766.0
+offset_bottom = 314.0
 text = "Play"
+metadata/_edit_use_anchors_ = true
 
 [node name="Quit" type="Button" parent="."]
-offset_left = -1.0
-offset_top = 191.0
-offset_right = 375.0
-offset_bottom = 340.0
+offset_left = 388.0
+offset_top = 356.0
+offset_right = 764.0
+offset_bottom = 505.0
 text = "Quit"
+metadata/_edit_use_anchors_ = true
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_lcbix")]
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

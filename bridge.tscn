@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0xn68i245keh"]
+
+[ext_resource type="Texture2D" uid="uid://cc4spmji27jry" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest/Forest Expansion Pack/Sprites/bridge.png" id="1_bu6db"]
+[ext_resource type="Script" path="res://Counterspell/bridge.gd" id="1_l6uti"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_awa5o"]
+radius = 8.84129
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pkjj3"]
+radius = 64.0078
+
+[node name="Bridge" type="CharacterBody2D"]
+script = ExtResource("1_l6uti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20, 48)
+scale = Vector2(1, 0.96)
+shape = SubResource("CircleShape2D_awa5o")
+
+[node name="Bridge" type="Sprite2D" parent="."]
+position = Vector2(11, 49)
+scale = Vector2(1.01875, 1.5625)
+texture = ExtResource("1_bu6db")
+
+[node name="Area2D" type="Area2D" parent="Bridge"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bridge/Area2D"]
+position = Vector2(13.7423, 25.6)
+scale = Vector2(0.981595, 0.64)
+shape = SubResource("CircleShape2D_pkjj3")
+
+[connection signal="body_entered" from="Bridge/Area2D" to="." method="_on_area_2d_body_entered"]

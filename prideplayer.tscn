@@ -430,6 +430,19 @@ stream = ExtResource("1_yjucb")
 volume_db = 24.0
 autoplay = true
 
+[node name="UI" type="CanvasLayer" parent="PlatformerLevel03Loop"]
+
+[node name="Description" type="Label" parent="PlatformerLevel03Loop/UI"]
+offset_left = 145.0
+offset_top = 52.0
+offset_right = 1029.0
+offset_bottom = 139.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 44
+text = "Now defeat wrath..."
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="player" type="CharacterBody2D" parent="."]
 position = Vector2(-16, -124)
 script = ExtResource("1_bmokq")

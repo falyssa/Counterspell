@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1q1vl4gho2ae"
-path="res://.godot/imported/Green.png-53cf6e951a7f7a09feaa02c1ae032cc1.ctex"
+uid="uid://2jbyjdugdc7h"
+path="res://.godot/imported/MainChar - hit(white).png-3948d9cde6015363ca9f0d1768913d6f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Counterspell/Green.png"
-dest_files=["res://.godot/imported/Green.png-53cf6e951a7f7a09feaa02c1ae032cc1.ctex"]
+source_file="res://Counterspell/MainCharacter(FullPack)/MainCharacter(FullPack)/MainChar - hit(white).png"
+dest_files=["res://.godot/imported/MainChar - hit(white).png-3948d9cde6015363ca9f0d1768913d6f.ctex"]
 
 [params]
 

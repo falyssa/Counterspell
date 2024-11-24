@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dwed8qjbeve72"
+path="res://.godot/imported/Hurt_and_heart.ogg-690b00bb3198911294a714fa50d37973.oggvorbisstr"
+
+[deps]
+
+source_file="res://Counterspell/SunnyLand Music/SunnyLand Music/adventure pack 2 ogg/Hurt_and_heart.ogg"
+dest_files=["res://.godot/imported/Hurt_and_heart.ogg-690b00bb3198911294a714fa50d37973.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

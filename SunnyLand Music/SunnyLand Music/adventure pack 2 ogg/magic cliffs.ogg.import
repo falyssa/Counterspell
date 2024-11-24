@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dshagjos8yet6"
+path="res://.godot/imported/magic cliffs.ogg-f58a37e76bad94c0723aaa7c160a4297.oggvorbisstr"
+
+[deps]
+
+source_file="res://Counterspell/SunnyLand Music/SunnyLand Music/adventure pack 2 ogg/magic cliffs.ogg"
+dest_files=["res://.godot/imported/magic cliffs.ogg-f58a37e76bad94c0723aaa7c160a4297.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

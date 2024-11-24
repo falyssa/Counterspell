@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=3 uid="uid://bfyfawhmk08iv"]
+
+[ext_resource type="Texture2D" uid="uid://cxy7ocmy2e1xc" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest of Illusion/Forest of Illusion Expansion Pack/Layers/back.png" id="1_j2u7d"]
+[ext_resource type="Script" path="res://Counterspell/bg.gd" id="1_yp121"]
+[ext_resource type="Texture2D" uid="uid://s87xm6c2bwqa" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest of Illusion/Forest of Illusion Expansion Pack/Layers/middle.png" id="3_0xrvp"]
+[ext_resource type="Texture2D" uid="uid://cc4spmji27jry" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest/Forest Expansion Pack/Sprites/bridge.png" id="4_1pk3o"]
+[ext_resource type="Texture2D" uid="uid://dvwxm2fsspgs8" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest of Illusion/Forest of Illusion Expansion Pack/Layers/front.png" id="4_x37tk"]
+[ext_resource type="Texture2D" uid="uid://ci2ax2mt2py54" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest/Forest Expansion Pack/Sprites/shroom_house.png" id="5_wr05a"]
+[ext_resource type="Texture2D" uid="uid://2g1cgqcmqavc" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest/Forest Expansion Pack/Sprites/tree.png" id="6_f250o"]
+[ext_resource type="Texture2D" uid="uid://bwmj3l3llf3k1" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest/Forest Expansion Pack/Sprites/tower.png" id="7_2ytwp"]
+[ext_resource type="Texture2D" uid="uid://cvf4yjk0a5lmk" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest/Forest Expansion Pack/Sprites/log.png" id="8_sntgr"]
+[ext_resource type="Texture2D" uid="uid://bn1f3ms1xthun" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Environments/Forest/Forest Expansion Pack/Sprites/rock.png" id="9_iffi5"]
+
+[node name="BG" type="ParallaxBackground"]
+script = ExtResource("1_yp121")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.9, 0.9)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Back" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(576.059, 324.5)
+scale = Vector2(2.00368, 2.37868)
+texture = ExtResource("1_j2u7d")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Middle" type="Sprite2D" parent="ParallaxLayer2"]
+position = Vector2(577.118, 324.5)
+scale = Vector2(2.00735, 2.38603)
+texture = ExtResource("3_0xrvp")
+
+[node name="Bridge" type="Sprite2D" parent="ParallaxLayer2"]
+position = Vector2(2115, 430)
+texture = ExtResource("4_1pk3o")
+offset = Vector2(-5, -9)
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.9, 0.9)
+
+[node name="ShroomHouse" type="Sprite2D" parent="ParallaxLayer4"]
+position = Vector2(807, 383)
+scale = Vector2(0.461539, 0.461539)
+texture = ExtResource("5_wr05a")
+
+[node name="ShroomHouse3" type="Sprite2D" parent="ParallaxLayer4"]
+position = Vector2(974, 401)
+scale = Vector2(0.274039, 0.274039)
+texture = ExtResource("5_wr05a")
+
+[node name="ShroomHouse2" type="Sprite2D" parent="ParallaxLayer4"]
+position = Vector2(1907, 355)
+scale = Vector2(0.663462, 0.663462)
+texture = ExtResource("5_wr05a")
+
+[node name="Tree" type="Sprite2D" parent="ParallaxLayer4"]
+position = Vector2(400, 357)
+texture = ExtResource("6_f250o")
+
+[node name="Tower" type="Sprite2D" parent="ParallaxLayer4"]
+position = Vector2(1293, 321)
+texture = ExtResource("7_2ytwp")
+
+[node name="Log" type="Sprite2D" parent="ParallaxLayer4"]
+position = Vector2(2266, 393)
+texture = ExtResource("8_sntgr")
+
+[node name="Rock" type="Sprite2D" parent="ParallaxLayer4"]
+position = Vector2(1428, 409)
+texture = ExtResource("9_iffi5")
+
+[node name="Bridge" type="Sprite2D" parent="ParallaxLayer4"]
+position = Vector2(1113, 421)
+texture = ExtResource("4_1pk3o")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.9, 0.9)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Front" type="Sprite2D" parent="ParallaxLayer3"]
+position = Vector2(577.235, 325)
+scale = Vector2(2, 2.375)
+texture = ExtResource("4_x37tk")

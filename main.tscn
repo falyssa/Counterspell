@@ -1,21 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://cn15nmano6ce"]
+[gd_scene load_steps=3 format=3 uid="uid://c7vuhlfeiocl0"]
 
 [ext_resource type="Script" path="res://Counterspell/main.gd" id="1_1mqvb"]
+[ext_resource type="PackedScene" uid="uid://bfyfawhmk08iv" path="res://Counterspell/BG.tscn" id="2_uf255"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1mqvb")
 
 [node name="Play" type="Button" parent="."]
-offset_right = 570.0
-offset_bottom = 248.0
+offset_left = 389.0
+offset_top = 165.0
+offset_right = 766.0
+offset_bottom = 314.0
 text = "Play"
+metadata/_edit_use_anchors_ = true
 
 [node name="Quit" type="Button" parent="."]
-offset_left = 1.0
-offset_top = 346.0
-offset_right = 571.0
-offset_bottom = 594.0
+offset_left = 388.0
+offset_top = 356.0
+offset_right = 764.0
+offset_bottom = 505.0
 text = "Quit"
+metadata/_edit_use_anchors_ = true
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_uf255")]
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

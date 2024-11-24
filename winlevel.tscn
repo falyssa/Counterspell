@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://ub334eiwvy22"]
+
+[ext_resource type="PackedScene" uid="uid://dtw6k5n80jcb0" path="res://Counterspell/levelone.tscn" id="1_8a6v7"]
+[ext_resource type="Script" path="res://Counterspell/winlevel.gd" id="2_fba6b"]
+[ext_resource type="PackedScene" uid="uid://bfyfawhmk08iv" path="res://Counterspell/BG.tscn" id="3_svqxk"]
+
+[node name="winlevel" type="Node2D"]
+
+[node name="Main" parent="." instance=ExtResource("1_8a6v7")]
+script = ExtResource("2_fba6b")
+
+[node name="Play2" type="Button" parent="Main"]
+offset_left = 389.0
+offset_top = 165.0
+offset_right = 766.0
+offset_bottom = 314.0
+text = "Next: Level 2"
+
+[node name="Quit2" type="Button" parent="Main"]
+offset_left = 388.0
+offset_top = 356.0
+offset_right = 764.0
+offset_bottom = 505.0
+text = "Quit"
+
+[node name="ParallaxBackground2" parent="Main" instance=ExtResource("3_svqxk")]

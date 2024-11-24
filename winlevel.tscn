@@ -24,3 +24,5 @@ offset_bottom = 505.0
 text = "Quit"
 
 [node name="ParallaxBackground2" parent="Main" instance=ExtResource("3_svqxk")]
+
+[connection signal="pressed" from="Main/Play2" to="Main" method="_on_play_2_pressed"]

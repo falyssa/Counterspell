@@ -1,3 +1,113 @@
-[gd_scene format=3 uid="uid://bv68iagsqbwg2"]
+[gd_scene load_steps=22 format=3 uid="uid://bv68iagsqbwg2"]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[ext_resource type="Script" path="res://Counterspell/Player/player.gd" id="1_hwvvp"]
+[ext_resource type="Texture2D" uid="uid://dqjj2x1x2msgh" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Characters/Players/Squirrel/crouch/spritesheet.png" id="2_7epq0"]
+[ext_resource type="Texture2D" uid="uid://dox7x3xy1adet" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Characters/Players/sunny-bunny/Sprites/idle/_0000_Layer-1.png" id="3_07oc1"]
+[ext_resource type="Texture2D" uid="uid://c1245kxwcblf7" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Characters/Players/sunny-bunny/Sprites/idle/_0001_Layer-2.png" id="4_o263q"]
+[ext_resource type="Texture2D" uid="uid://cd5xdwh8sutq3" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Characters/Players/sunny-bunny/Sprites/idle/_0002_Layer-3.png" id="5_qnh6l"]
+[ext_resource type="Texture2D" uid="uid://bkj6t8j7yf35h" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Characters/Players/sunny-bunny/Sprites/idle/_0003_Layer-4.png" id="6_3l6od"]
+[ext_resource type="Texture2D" uid="uid://cmvnj3yvhvkcn" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Characters/Players/sunny-bunny/Sprites/jump/_0000_Layer-1.png" id="7_q3uq3"]
+[ext_resource type="Texture2D" uid="uid://dav4805n2crc3" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Characters/Players/sunny-bunny/Sprites/jump/_0001_Layer-2.png" id="8_qecsp"]
+[ext_resource type="Texture2D" uid="uid://cp0w2fnvikpds" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Characters/Players/sunny-bunny/Sprites/jump/_0002_Layer-3.png" id="9_5xccs"]
+[ext_resource type="Texture2D" uid="uid://b0cktfogl581n" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Characters/Players/sunny-bunny/Sprites/jump/_0003_Layer-4.png" id="10_djynn"]
+[ext_resource type="Texture2D" uid="uid://ecu1cmeo70tc" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Characters/Players/sunny-bunny/Sprites/jump/_0004_Layer-5.png" id="11_j1djb"]
+[ext_resource type="Texture2D" uid="uid://ckqs6ika7npqi" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Characters/Players/sunny-bunny/Sprites/run/_0000_Layer-1.png" id="12_ajex3"]
+[ext_resource type="Texture2D" uid="uid://c4eedqqurte0e" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Characters/Players/sunny-bunny/Sprites/run/_0001_Layer-2.png" id="13_nt3n8"]
+[ext_resource type="Texture2D" uid="uid://cl4qm82o0rq6q" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Characters/Players/sunny-bunny/Sprites/run/_0002_Layer-3.png" id="14_alclc"]
+[ext_resource type="Texture2D" uid="uid://8jx0r50ltghf" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Characters/Players/sunny-bunny/Sprites/run/_0003_Layer-4.png" id="15_25q4o"]
+[ext_resource type="Texture2D" uid="uid://df8prqmdtq1yt" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Characters/Players/sunny-bunny/Sprites/run/_0004_Layer-5.png" id="16_5juqf"]
+[ext_resource type="Texture2D" uid="uid://bf5l27edrg1pk" path="res://Counterspell/Sunny Land Collection Files/Sunny Land Collection Files/Assets/Characters/Players/sunny-bunny/Sprites/run/_0005_Layer-6.png" id="17_fc7tt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bw3w5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrojx"]
+atlas = ExtResource("2_7epq0")
+region = Rect2(0, 0, 90, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2f1l"]
+atlas = ExtResource("2_7epq0")
+region = Rect2(90, 0, 90, 58)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lcay7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrojx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2f1l")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_07oc1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_o263q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qnh6l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3l6od")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_q3uq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_qecsp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5xccs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_djynn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_j1djb")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_ajex3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_nt3n8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_alclc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_25q4o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_5juqf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_fc7tt")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_hwvvp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_bw3w5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lcay7")
+animation = &"Idle"

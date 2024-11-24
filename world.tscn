@@ -1,3 +1,11 @@
-[gd_scene format=3 uid="uid://2eth1heat0ee"]
+[gd_scene load_steps=2 format=3 uid="uid://2eth1heat0ee"]
+
+[ext_resource type="PackedScene" uid="uid://bv68iagsqbwg2" path="res://Counterspell/Player/Player.tscn" id="1_20opp"]
 
 [node name="world" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_20opp")]
+position = Vector2(238, 322)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(238, 322)

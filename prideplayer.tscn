@@ -7,10 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://dpfsjjev0awi7" path="res://Counterspell/MainCharacter(FullPack)/MainCharacter(FullPack)/MainChar - run(loop).png" id="5_8y8j5"]
 [ext_resource type="Texture2D" uid="uid://dtvgpsyat0aq3" path="res://Counterspell/throne room.webp" id="6_nt2t3"]
 [ext_resource type="Script" path="res://Counterspell/boss.gd" id="7_puxh6"]
-[ext_resource type="Texture2D" uid="uid://trh1dbelvwip" path="res://Heart Container/Flying Demon 2D Pixel Art/Sprites/with_outline/ATTACK.png" id="8_tysm4"]
-[ext_resource type="Texture2D" uid="uid://cwb4txoqrq1lw" path="res://Heart Container/Flying Demon 2D Pixel Art/Sprites/with_outline/IDLE.png" id="9_f341k"]
-[ext_resource type="Texture2D" uid="uid://ctt8fhxxkl6lg" path="res://Heart Container/Flying Demon 2D Pixel Art/Sprites/with_outline/FLYING.png" id="10_4r0fq"]
-[ext_resource type="Texture2D" uid="uid://bpnrfpleqg62a" path="res://Heart Container/Heart_container.png" id="11_pgkhn"]
+[ext_resource type="Texture2D" uid="uid://trh1dbelvwip" path="res://Counterspell/Heart Container/Flying Demon 2D Pixel Art/Sprites/with_outline/ATTACK.png" id="8_tysm4"]
+[ext_resource type="Texture2D" uid="uid://cwb4txoqrq1lw" path="res://Counterspell/Heart Container/Flying Demon 2D Pixel Art/Sprites/with_outline/IDLE.png" id="9_f341k"]
+[ext_resource type="Texture2D" uid="uid://ctt8fhxxkl6lg" path="res://Counterspell/Heart Container/Flying Demon 2D Pixel Art/Sprites/with_outline/FLYING.png" id="10_4r0fq"]
+[ext_resource type="Texture2D" uid="uid://bpnrfpleqg62a" path="res://Counterspell/Heart Container/Heart_container.png" id="11_pgkhn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwbcp"]
 
